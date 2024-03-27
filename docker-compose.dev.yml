@@ -34,11 +34,17 @@ services:
       - backend
 
   db:
-    image: postgres:14-alpine
+    image: influxdb:2.6-alpine
+    ports:
+      - "8086:8086"
     env_file:
       - .env
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - influxdbv2_data:/var/lib/influxdb2
+      - influxdbv2_config:/etc/influxdb2
 
 volumes:
-  pgdata:
+  influxdbv2_data:
+    driver: local
+  influxdbv2_config:
+    driver: local
