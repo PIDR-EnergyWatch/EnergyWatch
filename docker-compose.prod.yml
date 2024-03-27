@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.prod
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./backend/:/srv/app
+    depends_on:
+      - db
+
+  frontend-static:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+      target: deploy-static-svelte
+    ports:
+      - 80:80
+
+    frontend-node:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+      target: deploy-node-svelte
+    ports:
+      - 3000:3000
+
+  db:
+    image: postgres:14-alpine
+    env_file:
+      - .env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

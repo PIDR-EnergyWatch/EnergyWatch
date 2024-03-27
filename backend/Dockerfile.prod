@@ -1,0 +1,17 @@
+FROM golang:1.21-alpine3.19 as builder
+
+WORKDIR /srv/app
+
+COPY . .
+
+RUN apk --no-cache add ca-certificates \
+  && go mod download \
+  # ldflags -s -w reduces size by stripping off unneeded info from binary.
+  && CGO_ENABLED=0 go build -ldflags="-s -w" -o ./bin/server ./cmd/server/main.go
+
+FROM scratch
+WORKDIR /
+COPY --from=builder /srv/app/bin/server .
+COPY --from=builder /etc/ssl/certs /etc/ssl/certs
+
+ENTRYPOINT ["./server"]
