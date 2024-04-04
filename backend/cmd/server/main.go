@@ -3,6 +3,7 @@ package main
 import (
 	"backend/api/api"
 	"backend/api/auth"
+	"backend/internal"
 	"github.com/go-playground/validator/v10"
 	"net/http"
 	"os"
@@ -42,6 +43,10 @@ func main() {
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 	e.Validator = &CustomValidator{validator: validator.New()}
+
+	// connect to the database
+	internal.ConnectDB()
+	defer internal.CloseDB()
 
 	// register auth v1 routes from auth package
 	authGroup := e.Group("/api/auth")

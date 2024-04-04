@@ -9,8 +9,7 @@ const axiosAPI = axios.create({
 const apiRequest = (method, url, request) => {
     const headers = {
         'Content-Type': 'application/json',
-		'Access-Control-Allow-Credentials': true,
-
+		    'Access-Control-Allow-Credentials': true,
     };
     return axiosAPI({
         method,

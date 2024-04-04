@@ -22,3 +22,8 @@ export const isLoggedIn = async() => {
         return false
     }
 }
+
+export const logout = async() => {
+    await api.post('/api/auth/logout');
+    goto('/login');
+}

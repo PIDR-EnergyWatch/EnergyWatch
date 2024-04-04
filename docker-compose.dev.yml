@@ -42,6 +42,7 @@ services:
     volumes:
       - influxdbv2_data:/var/lib/influxdb2
       - influxdbv2_config:/etc/influxdb2
+      - ./db/pat.csv:/home/influxdb/pat.csv
 
 volumes:
   influxdbv2_data:
