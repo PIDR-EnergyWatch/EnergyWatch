@@ -27,3 +27,12 @@ export const logout = async() => {
     await api.post('/api/auth/logout');
     goto('/login');
 }
+
+export const requestData = async(measurement) => {
+    try {
+        const response = await api.get(`/api/request?measurement=${measurement}`);
+        return response;
+    } catch (err) {
+        return err.response?.data?.message;
+    }
+}

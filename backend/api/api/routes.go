@@ -13,5 +13,5 @@ func Register(e *echo.Group) {
 	// Protected routes using JWT claims
 	protectedGroup := e.Group("", middleware.JWTMiddleware())
 	protectedGroup.GET("/loggedIn", loggedIn)
-	e.GET("/request", request)
+	protectedGroup.GET("/request", request)
 }
