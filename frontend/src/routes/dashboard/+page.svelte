@@ -2,32 +2,8 @@
 	import AuthenticatedLayout from '$lib/components/AuthenticatedLayout.svelte';
 	import { logout, requestData, fetchEco2Mix } from '$lib/api/requests';
 	import { onMount } from 'svelte';
-	import PatLayout from '$lib/components/graph/PATLayout.svelte';
+	import LineChart from '$lib/components/graph/LineChart.svelte';
 	import Eco2mix from '$lib/components/graph/eco2mix.svelte';
-
-	import {
-		Chart as ChartJS,
-		Title,
-		Tooltip,
-		Legend,
-		LineElement,
-		LinearScale,
-		PointElement,
-		CategoryScale,
-		TimeScale
-	} from 'chart.js';
-	import 'chartjs-adapter-date-fns';
-
-	ChartJS.register(
-		Title,
-		Tooltip,
-		Legend,
-		LineElement,
-		LinearScale,
-		PointElement,
-		CategoryScale,
-		TimeScale
-	);
 
 	let res = undefined;
 	let eco2mix = undefined;
@@ -41,9 +17,9 @@
 <AuthenticatedLayout>
 	<h1 class="text-3xl font-bold">Welcome!</h1>
 	<section>
-		{#if res}
-			<PatLayout requestResult={res} title={'PAT'}/>
-			
+		{#if res && eco2mix}
+			<LineChart requestResult={res} title={'PAT'} />
+			<Eco2mix res={eco2mix} />
 		{:else}
 			<div
 				class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"
@@ -55,10 +31,6 @@
 				>
 			</div>
 		{/if}
-		{#if eco2mix}
-			<Eco2mix res={eco2mix} />
-		{/if}
-
 	</section>
 	<button
 		class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
