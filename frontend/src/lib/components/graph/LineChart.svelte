@@ -36,7 +36,8 @@
 				data: requestResult.values,
 				fill: false,
 				borderColor: 'rgb(75, 192, 192)',
-				tension: 0.1
+				tension: 0.1,
+				pointRadius: 0
 			}
 		]
 	};
@@ -45,7 +46,13 @@
 		plugins: {
 			title: {
 				text: title,
-				display: true
+				display: true,
+				font: {
+					size: 20
+				}
+			},
+			legend: {
+				display: false
 			}
 		},
 		scales: {
@@ -62,15 +69,16 @@
 					major: {
 						enabled: true
 					}
-				},
-				y: {
-					title: {
-						display: true,
-						text: requestResult.field
-					}
+				}
+			},
+			y: {
+				title: {
+					display: true,
+					text: '(en ' + requestResult.field + ' )'
 				}
 			}
 		}
+		// responsive: true
 	};
 </script>
 

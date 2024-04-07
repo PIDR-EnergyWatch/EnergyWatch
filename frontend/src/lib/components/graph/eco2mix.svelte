@@ -132,7 +132,10 @@
 		plugins: {
 			title: {
 				display: true,
-				text: 'Eco2mix national (via RTE)'
+				text: 'Eco2mix national (via RTE)',
+				font: {
+					size: 20
+				}
 			}
 		},
 		responsive: true,

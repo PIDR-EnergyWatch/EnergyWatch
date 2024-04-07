@@ -1,25 +1,34 @@
 <script>
 	import AuthenticatedLayout from '$lib/components/AuthenticatedLayout.svelte';
-	import { logout, requestData, fetchEco2Mix } from '$lib/api/requests';
+	import { requestData, fetchEco2Mix } from '$lib/api/requests';
 	import { onMount } from 'svelte';
-	import LineChart from '$lib/components/graph/LineChart.svelte';
-	import Eco2mix from '$lib/components/graph/eco2mix.svelte';
+	import Card from '$lib/components/Card.svelte';
 
-	let res = undefined;
-	let eco2mix = undefined;
+	let graphs = undefined;
 
 	onMount(async () => {
-		res = await requestData('PAT');
-		eco2mix = await fetchEco2Mix();
+		let res = await requestData('PAT');
+		let eco2mix = await fetchEco2Mix();
+
+		graphs = [
+			{
+				title: 'PAT',
+				type: 'line',
+				res
+			},
+			{
+				title: 'Eco2mix',
+				type: 'eco2mix',
+				res: eco2mix
+			}
+		];
 	});
 </script>
 
 <AuthenticatedLayout>
-	<h1 class="text-3xl font-bold">Welcome!</h1>
-	<section>
-		{#if res && eco2mix}
-			<LineChart requestResult={res} title={'PAT'} />
-			<Eco2mix res={eco2mix} />
+	<section class="m-8">
+		{#if graphs}
+			<Card {graphs} />
 		{:else}
 			<div
 				class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"
@@ -32,10 +41,4 @@
 			</div>
 		{/if}
 	</section>
-	<button
-		class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-		on:click={async () => await logout()}
-	>
-		Logout
-	</button>
 </AuthenticatedLayout>
