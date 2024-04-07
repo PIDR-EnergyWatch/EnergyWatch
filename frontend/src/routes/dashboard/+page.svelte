@@ -1,9 +1,9 @@
 <script>
-	import AuthenticatedLayout from '../../lib/components/AuthenticatedLayout.svelte';
-	import { logout, requestData } from '$lib/api/requests';
+	import AuthenticatedLayout from '$lib/components/AuthenticatedLayout.svelte';
+	import { logout, requestData, fetchEco2Mix } from '$lib/api/requests';
 	import { onMount } from 'svelte';
-	import PatLayout from '../../lib/components/graph/PATLayout.svelte';
-	import Eco2mix from '../../lib/components/graph/eco2mix.svelte';
+	import PatLayout from '$lib/components/graph/PATLayout.svelte';
+	import Eco2mix from '$lib/components/graph/eco2mix.svelte';
 
 	import {
 		Chart as ChartJS,
@@ -17,7 +17,6 @@
 		TimeScale
 	} from 'chart.js';
 	import 'chartjs-adapter-date-fns';
-	import axios from 'axios';
 
 	ChartJS.register(
 		Title,
@@ -35,14 +34,7 @@
 
 	onMount(async () => {
 		res = await requestData('PAT');
-		const today = new Date();
-		const year = today.getFullYear();
-		const month = String(today.getMonth() + 1).padStart(2, '0');
-		const day = String(today.getDate()).padStart(2, '0');
-		const formattedDate = `${year}%2F${month}%2F${day}`;
-		eco2mix = await axios.get(
-			`https://odre.opendatasoft.com/api/explore/v2.1/catalog/datasets/eco2mix-national-tr/records?limit=20&refine=date_heure%3A%22${formattedDate}%22`
-		);
+		eco2mix = await fetchEco2Mix();
 	});
 </script>
 
