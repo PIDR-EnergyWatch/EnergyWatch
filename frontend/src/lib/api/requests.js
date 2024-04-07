@@ -1,5 +1,6 @@
 import api from '$lib/api/api';
 import { goto } from '$app/navigation';
+import axios from 'axios';
 
 export const login = async(username, password) => {
     try {
@@ -35,4 +36,16 @@ export const requestData = async(measurement) => {
     } catch (err) {
         return err.response?.data?.message;
     }
+}
+
+export const fetchEco2Mix = async() => {
+    const today = new Date();
+	const year = today.getFullYear();
+	const month = String(today.getMonth() + 1).padStart(2, '0');
+	const day = String(today.getDate()).padStart(2, '0');
+	const formattedDate = `${year}%2F${month}%2F${day}`;
+	const response = await axios.get(
+			`https://odre.opendatasoft.com/api/explore/v2.1/catalog/datasets/eco2mix-national-tr/records?limit=20&refine=date_heure%3A%22${formattedDate}%22`
+	);
+    return response.data.results;
 }
