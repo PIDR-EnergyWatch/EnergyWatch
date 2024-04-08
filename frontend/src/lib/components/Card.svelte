@@ -18,7 +18,7 @@
 				{#if graph.type === 'line'}
 					<LineChart requestResult={graph.res} title={graph.title} />
 				{:else if graph.type === 'eco2mix'}
-					<Eco2mix res={graph.res} />
+					<Eco2mix res={graph.res} title={graph.title}/>
 				{:else if graph.type === 'weather'}
 					<Weather data={graph.res} />
 				{/if}

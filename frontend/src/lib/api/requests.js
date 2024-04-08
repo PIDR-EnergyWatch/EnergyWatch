@@ -50,6 +50,19 @@ export const fetchEco2Mix = async() => {
     return response.data.results;
 }
 
+export const fetchEco2MixGrandEst = async() => {
+    const today = new Date();
+	const year = today.getFullYear();
+	const month = String(today.getMonth() + 1).padStart(2, '0');
+	const day = String(today.getDate()).padStart(2, '0');
+	const formattedDate = `${year}%2F${month}%2F${day}`;
+	const response = await axios.get(
+			`https://odre.opendatasoft.com/api/explore/v2.1/catalog/datasets/eco2mix-regional-tr/records?where=date%3D%22${year}-${month}-${day}%22&order_by=heure&limit=100&refine=libelle_region%3A%22Grand%20Est%22&refine=date_heure:%22${formattedDate}%22`
+	);
+    return response.data.results;
+}
+
+
 export const fetchWeather = async() => {
     const response = await axios.get('https://api.weather.com/v2/pws/observations/hourly/7day?stationId=IVANDU8&format=json&units=e&apiKey=4e78f553ad464503b8f553ad46b50386');
     return response.data;

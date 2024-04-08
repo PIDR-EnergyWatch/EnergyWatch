@@ -1,5 +1,6 @@
 <script>
 	export let res;
+	export let title;
 	import { Line } from 'svelte-chartjs';
 
 	import {
@@ -132,7 +133,7 @@
 		plugins: {
 			title: {
 				display: true,
-				text: 'Eco2mix national (via RTE)',
+				text: title,
 				font: {
 					size: 20
 				}
