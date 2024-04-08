@@ -41,7 +41,7 @@
         {#if index < 4}
         <div class="column ">
         <p>{convertTime(item.dt_txt)}</p>
-        <p>{(item.main.temp - 273).toFixed(2)} °C</p>
+        <p><b>{(item.main.temp - 273).toFixed(0)} °C</b></p>
         <div style="background-color:wheat; width: fit-content; border-radius : 50px;">
             <img alt="Weather Icon" src="https://openweathermap.org/img/wn/{item.weather[0].icon}@2x.png">
         </div>
