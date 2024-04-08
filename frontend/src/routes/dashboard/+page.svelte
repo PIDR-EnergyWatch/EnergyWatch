@@ -1,6 +1,6 @@
 <script>
 	import AuthenticatedLayout from '$lib/components/AuthenticatedLayout.svelte';
-	import { requestData, fetchEco2Mix } from '$lib/api/requests';
+	import { requestData, fetchEco2Mix, fetchWeather, fetchOpenWeather, fetchOpenWeatherForecast } from '$lib/api/requests';
 	import { onMount } from 'svelte';
 	import Card from '$lib/components/Card.svelte';
 
@@ -9,7 +9,10 @@
 	onMount(async () => {
 		let res = await requestData('PAT');
 		let eco2mix = await fetchEco2Mix();
-
+		let weather = await fetchWeather();
+		let openWeather = await fetchOpenWeather();
+		let openWeatherForecast = await fetchOpenWeatherForecast();
+		console.log(weather);
 		graphs = [
 			{
 				title: 'PAT',
@@ -20,6 +23,24 @@
 				title: 'Eco2mix',
 				type: 'eco2mix',
 				res: eco2mix
+			},
+			{
+				title: 'Weather',
+				type: 'weather',
+				res: {
+					weather : weather,
+					openWeather : openWeather,
+					openWeatherForecast : openWeatherForecast
+				}
+			},
+			{
+				title: 'Température',
+				type : 'line',
+				res : {
+					values : weather.observations.map(value => (value.imperial.tempAvg-32)*5/9),
+					labels : weather.observations.map(value => value.obsTimeLocal),
+					field : '°C'
+				}
 			}
 		];
 	});
