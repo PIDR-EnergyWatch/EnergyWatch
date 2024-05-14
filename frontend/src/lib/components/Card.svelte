@@ -3,6 +3,7 @@
 
 	import LineChart from '$lib/components/graph/LineChart.svelte';
 	import Eco2mix from '$lib/components/graph/eco2mix.svelte';
+	import Weather from '$lib/components/graph/CurrentWeather.svelte';
 </script>
 
 <ul
@@ -17,7 +18,9 @@
 				{#if graph.type === 'line'}
 					<LineChart requestResult={graph.res} title={graph.title} />
 				{:else if graph.type === 'eco2mix'}
-					<Eco2mix res={graph.res} />
+					<Eco2mix res={graph.res} title={graph.title}/>
+				{:else if graph.type === 'weather'}
+					<Weather data={graph.res} />
 				{/if}
 				<button type="button" class="absolute inset-0 focus:outline-none">
 					<span class="sr-only">View details for {graph.title}</span>

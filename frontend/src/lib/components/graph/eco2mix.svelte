@@ -1,5 +1,6 @@
 <script>
 	export let res;
+	export let title;
 	import { Line } from 'svelte-chartjs';
 
 	import {
@@ -21,8 +22,8 @@
 	const fioul = {
 		label: 'Fioul',
 		data: res.map((record) => record.fioul),
-		backgroundColor: 'rgb(128, 84, 159)',
-		borderColor: 'rgb(128, 84, 159)',
+		backgroundColor: 'rgb(196, 131, 242)',
+		borderColor: 'rgb(196, 131, 242)',
 		borderWidth: 0,
 		fill: true,
 		pointRadius: 0
@@ -30,8 +31,8 @@
 	const gaz = {
 		label: 'Gaz',
 		data: res.map((record) => record.gaz),
-		backgroundColor: 'rgba(255, 0,0, 1)',
-		borderColor: 'rgba(255,0,0, 1)',
+		backgroundColor: 'rgba(242, 90, 90, 1)',
+		borderColor: 'rgba(242, 90, 90, 1)',
 		borderWidth: 0,
 		fill: true,
 		pointRadius: 0
@@ -40,8 +41,8 @@
 	const pompage = {
 		label: 'Pompage',
 		data: res.map((record) => record.pompage),
-		backgroundColor: 'rgb(14, 66, 105)',
-		borderColor: 'rgb(14, 66, 105)',
+		backgroundColor: 'rgb(47, 103, 145)',
+		borderColor: 'rgb(47, 103, 145)',
 		borderWidth: 0,
 		fill: true,
 		pointRadius: 0
@@ -50,8 +51,8 @@
 	const ech_physiques = {
 		label: 'Export / Import',
 		data: res.map((record) => record.ech_physiques),
-		backgroundColor: 'rgb(150, 150, 150)',
-		borderColor: 'rgb(150, 150, 150)',
+		backgroundColor: 'rgb(200, 200, 200)',
+		borderColor: 'rgb(200, 200, 200)',
 		borderWidth: 0,
 		pointRadius: 0,
 		fill: true
@@ -69,8 +70,8 @@
 	const nucleaire = {
 		label: 'Nucléaire',
 		data: res.map((record) => record.nucleaire),
-		backgroundColor: 'rgb(228, 167, 1)',
-		borderColor: 'rgb(228, 167, 1)',
+		backgroundColor: 'rgb(252, 215, 114)',
+		borderColor: 'rgb(252, 215, 114)',
 		borderWidth: 0,
 		fill: true,
 		pointRadius: 0
@@ -78,8 +79,8 @@
 	const eolien = {
 		label: 'Eolien',
 		data: res.map((record) => record.eolien),
-		backgroundColor: 'rgb(114, 203, 183)',
-		borderColor: 'rgb(114, 203, 183)',
+		backgroundColor: 'rgb(173, 247, 231)',
+		borderColor: 'rgb(173, 247, 231)',
 		borderWidth: 0,
 		fill: true,
 		pointRadius: 0
@@ -87,8 +88,8 @@
 	const solaire = {
 		label: 'Solaire',
 		data: res.map((record) => record.solaire),
-		backgroundColor: 'rgb(214, 107, 13)',
-		borderColor: 'rgb(214, 107, 13)',
+		backgroundColor: 'rgb(227, 152, 86)',
+		borderColor: 'rgb(227, 152, 86)',
 		borderWidth: 0,
 		fill: true,
 		pointRadius: 0
@@ -96,8 +97,8 @@
 	const hydraulique = {
 		label: 'Hydraulique',
 		data: res.map((record) => record.hydraulique),
-		backgroundColor: 'rgb(38, 114, 176)',
-		borderColor: 'rgb(38, 114, 176)',
+		backgroundColor: 'rgb(43, 158, 252)',
+		borderColor: 'rgb(43, 158, 252)',
 		borderWidth: 0,
 		fill: true,
 		pointRadius: 0
@@ -105,9 +106,9 @@
 	const bioenergies = {
 		label: 'Bioénergies',
 		data: res.map((record) => record.bioenergies),
-		backgroundColor: 'rgba( 35, 156, 0 ,1)',
-		borderColor: 'rgba( 35, 156, 0 , 1)',
-		borderWidth: 0,
+		backgroundColor: 'rgb(101, 199, 74)',
+		borderColor: 'rgba( 101, 199, 74, 1)',
+		borderWidth:0,
 		fill: true,
 		pointRadius: 0
 	};
@@ -132,7 +133,7 @@
 		plugins: {
 			title: {
 				display: true,
-				text: 'Eco2mix national (via RTE)',
+				text: title,
 				font: {
 					size: 20
 				}
