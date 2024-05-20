@@ -108,7 +108,7 @@
 		data: res.map((record) => record.bioenergies),
 		backgroundColor: 'rgb(101, 199, 74)',
 		borderColor: 'rgba( 101, 199, 74, 1)',
-		borderWidth:0,
+		borderWidth: 0,
 		fill: true,
 		pointRadius: 0
 	};
