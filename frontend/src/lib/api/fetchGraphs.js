@@ -22,13 +22,13 @@ export const getAllGraphs = async() => {
 
     graphs = [
         {
-            title: 'Eco2mix Grand Est',
+            title: 'Mix Énergétique Grand Est',
             type: 'eco2mix',
             res: eco2mixGrandEst,
             from: "Réseau de Transport d'Électricité"
         },
         {
-            title: 'Eco2mix National',
+            title: 'Mix Énergétique National ',
             type: 'eco2mix',
             res: eco2mix,
             from: "Réseau de Transport d'Électricité"

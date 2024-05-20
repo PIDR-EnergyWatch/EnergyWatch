@@ -13,7 +13,7 @@
 	<span
 		class="absolute -m-4 items-center rounded-md bg-purple-50 px-2 py-1 text-s font-medium text-purple-700 ring-1 ring-inset ring-purple-700/10"
 	>
-		{graph.from}</span
+		{"• " +graph.from}</span
 	>
 
 	{#if graph.type === 'line'}
