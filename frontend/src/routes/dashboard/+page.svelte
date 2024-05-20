@@ -29,7 +29,7 @@
 			{
 				title: 'PAT',
 				type: 'line',
-				res
+				res : res
 			},
 			{
 				title: 'Température',
@@ -37,7 +37,8 @@
 				res : {
 					values : weather.observations.map(value => (value.imperial.tempAvg-32)*5/9),
 					labels : weather.observations.map(value => value.obsTimeLocal),
-					field : '°C'
+					field : '°C',
+					source : weather.source
 				}
 			},
 			{
