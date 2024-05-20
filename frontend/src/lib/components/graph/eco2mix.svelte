@@ -162,3 +162,6 @@
 </script>
 
 <Line {data} {options} />
+<div class = "source">
+	<p>Source : <i>{res.source}</i></p>
+</div>

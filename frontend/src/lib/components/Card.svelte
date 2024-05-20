@@ -17,20 +17,14 @@
 				class="group aspect-auto block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100"
 			>
 				{#if graph.type === 'line'}
-					<LineChart requestResult={graph.res} title={graph.title} />
-					<div class="source">
-						<p>Source : <i>{graph.res.source}</i></p>
-					</div>
+					<LineChart requestResult={graph.res} title={graph.title}/>
+					
 				{:else if graph.type === 'eco2mix'}
 					<Eco2mix res={graph.res} title={graph.title}/>
-					<div class="source">
-						<p>Source : <i>{graph.res.source}</i></p>
-					</div>
+					
 				{:else if graph.type === 'weather'}
-					<Weather data={graph.res} />
-					<div class="source">
-						<p>Source : <i>{graph.res.weather.source}</i> & <i>{graph.res.openWeather.source}</i></p>
-					</div>
+					<Weather data={graph.res}/>
+					
 				{/if}
 				<button type="button" class="absolute inset-0 focus:outline-none">
 					<span class="sr-only">View details for {graph.title}</span>

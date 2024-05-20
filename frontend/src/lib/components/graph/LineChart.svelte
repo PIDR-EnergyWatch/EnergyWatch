@@ -85,3 +85,6 @@
 </script>
 
 <Line {data} {options} />
+<div class = "source">
+	<p>Source : <i>{requestResult.source}</i></p>
+</div>

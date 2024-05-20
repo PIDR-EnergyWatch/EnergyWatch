@@ -51,4 +51,8 @@
        
     {/each}
     </div>
+    
+</div>
+<div class = "source">
+    <p>Source : <i>{weather.source}</i> & <i>{openWeather.source}</i></p>
 </div>
