@@ -1,5 +1,7 @@
 <script>
 	import AuthenticatedLayout from '$lib/components/AuthenticatedLayout.svelte';
+	// import Carousel from 'svelte-carousel';
+	import Carousel from '$lib/components/Carousel.svelte';
 	import { getAllGraphs } from '$lib/api/fetchGraphs';
 	import { onMount } from 'svelte';
 	import Card from '$lib/components/Card.svelte';
@@ -14,16 +16,15 @@
 <AuthenticatedLayout>
 	<section class="m-8">
 		{#if graphs}
-			<ul
-				role="list"
-				class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-2 xl:gap-x-8"
-			>
+			<Carousel autoplay="5000">
 				{#each graphs as graph (graph.title)}
-					<li class="relative">
-						<Card {graph} />
-					</li>
+					<div class="p-8 flex items-center justify-center">
+						<div class="w-full">
+							<Card {graph} />
+						</div>
+					</div>
 				{/each}
-			</ul>
+			</Carousel>
 		{:else}
 			<div
 				class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"

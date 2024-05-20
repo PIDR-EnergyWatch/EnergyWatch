@@ -1,34 +1,31 @@
 <script>
-	export let graphs;
+	export let graph;
 
 	import LineChart from '$lib/components/graph/LineChart.svelte';
 	import Eco2mix from '$lib/components/graph/eco2mix.svelte';
 	import Weather from '$lib/components/graph/CurrentWeather.svelte';
 </script>
 
-<ul
-	role="list"
-	class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-2 xl:gap-x-8"
+<div
+	class="overflow-visible group aspect-auto block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100"
 >
-	{#each graphs as graph (graph.title)}
-		<li class="relative">
-			<div
-				class="group aspect-auto block w-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100"
-			>
-				{#if graph.type === 'line'}
-					<LineChart requestResult={graph.res} title={graph.title} />
-				{:else if graph.type === 'eco2mix'}
-					<Eco2mix res={graph.res} title={graph.title}/>
-				{:else if graph.type === 'weather'}
-					<Weather data={graph.res} />
-				{/if}
-				<button type="button" class="absolute inset-0 focus:outline-none">
-					<span class="sr-only">View details for {graph.title}</span>
-				</button>
-			</div>
-		</li>
-	{/each}
-</ul>
+	<span
+		class="absolute -m-4 items-center rounded-md bg-purple-50 px-2 py-1 text-s font-medium text-purple-700 ring-1 ring-inset ring-purple-700/10"
+	>
+		{graph.from}</span
+	>
+
+	{#if graph.type === 'line'}
+		<LineChart requestResult={graph.res} title={graph.title} />
+	{:else if graph.type === 'eco2mix'}
+		<Eco2mix res={graph.res} title={graph.title} />
+	{:else if graph.type === 'weather'}
+		<Weather data={graph.res} />
+	{/if}
+	<button type="button" class="absolute inset-0 focus:outline-none">
+		<span class="sr-only">View details for {graph.title}</span>
+	</button>
+</div>
 
 <style>
 	/* Add any component-specific styles here */

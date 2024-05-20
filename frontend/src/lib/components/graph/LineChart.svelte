@@ -28,8 +28,6 @@
 	export let requestResult;
 	export let title;
 
-	console.log(requestResult);
-
 	let data = {
 		labels: requestResult.labels,
 		datasets: [

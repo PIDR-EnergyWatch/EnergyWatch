@@ -44,7 +44,7 @@ func QueryDB(measurement string) interface{} {
 				fmt.Printf("table: %s\n", result.TableMetadata().String())
 			}
 			// Access data
-			fmt.Printf("time: %v | value: %v\n", result.Record().Time(), result.Record().Value())
+			//fmt.Printf("time: %v | value: %v\n", result.Record().Time(), result.Record().Value())
 			res.Measurement = result.Record().Measurement()
 			res.Field = result.Record().Field()
 			res.Labels = append(res.Labels, result.Record().Time())
