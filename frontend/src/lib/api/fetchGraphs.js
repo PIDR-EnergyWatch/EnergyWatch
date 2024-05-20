@@ -17,6 +17,8 @@ export const getAllGraphs = async() => {
     let weather = await fetchWeather();
     let openWeather = await fetchOpenWeather();
     let openWeatherForecast = await fetchOpenWeatherForecast();
+    let puissanceOrdinateur = await requestData('puissance_ordinateur02');
+    let puissanceEcranOrdinateur = await requestData('puissance_ecranordinateur02');
 
     graphs = [
         {
@@ -61,7 +63,27 @@ export const getAllGraphs = async() => {
                 openWeather: openWeather,
                 openWeatherForecast: openWeatherForecast
             },
-            from: "OpenWeatherMap"
+            from: "OpenWeatherMap & Station Météo ENSEM"
+        },
+        {
+            title: 'Consommation Salle 206',
+            type: 'salle206',
+            res: {
+                puissanceOrdinateur: {
+                    values: puissanceOrdinateur.values,
+                    labels: puissanceOrdinateur.labels,
+                    field: 'W',
+                    title: 'Puissance Ordinateur'
+                },
+                puissanceEcranOrdinateur: {
+                    values: puissanceEcranOrdinateur.values,
+                    labels: puissanceEcranOrdinateur.labels,
+                    field: 'W',
+                    title: 'Puissance Ecran Ordinateur'
+                }
+                
+            },
+            from: "Capteur ENSEM"
         }
     ];
 
