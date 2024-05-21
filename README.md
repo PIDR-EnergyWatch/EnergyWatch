@@ -101,7 +101,7 @@ Pour mettre en place une copie locale et la faire fonctionner, suivez ces étape
    ```
 2. Compiler
    ```sh
-   cd mezureux1u
+   cd EnergyWatch
    make build
    ```
 3. Lancer
