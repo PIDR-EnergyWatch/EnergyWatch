@@ -12,6 +12,7 @@ export const getAllGraphs = async() => {
 
     let temp = await requestData('temperature');
     let pat = await requestData('PAT');
+    let eat = await requestData('EAT');
     let eco2mix = await fetchEco2Mix();
     let eco2mixGrandEst = await fetchEco2MixGrandEst();
     let weather = await fetchWeather();
@@ -40,9 +41,15 @@ export const getAllGraphs = async() => {
             from: "Capteur ENSEM"
         },
         {
-            title: 'PAT',
+            title: 'Puissance active totale',
             type: 'line',
             res: pat,
+            from: "Capteur UL"
+        },
+        {
+            title: 'Énergie active totale',
+            type: 'line',
+            res: eat,
             from: "Capteur UL"
         },
         {

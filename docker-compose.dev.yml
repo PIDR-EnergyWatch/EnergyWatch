@@ -43,6 +43,7 @@ services:
       - influxdbv2_data:/var/lib/influxdb2
       - influxdbv2_config:/etc/influxdb2
       - ./db/pat.csv:/home/influxdb/pat.csv
+      - ./db/EAT.csv:/home/influxdb/EAT.csv
 
   telegraf:
     image: telegraf:1.19
