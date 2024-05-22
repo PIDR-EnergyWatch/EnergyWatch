@@ -19,7 +19,7 @@
 			<Carousel autoplay="5000">
 				{#each graphs as graph (graph.title)}
 					<div class="p-8 flex items-center justify-center">
-						<div class="w-full">
+						<div class="w-5/6">
 							<Card {graph} />
 						</div>
 					</div>
