@@ -99,12 +99,17 @@ Pour mettre en place une copie locale et la faire fonctionner, suivez ces étape
    ```sh
    git clone https://github.com/PIDR-EnergyWatch/EnergyWatch.git
    ```
-2. Compiler
+2. Configurer les variables d'environnement
+   ```sh
+   cp .env.example .env
+   nano .env
+   ```
+3. Compiler
    ```sh
    cd mezureux1u
    make build
    ```
-3. Lancer
+4. Lancer
    ```sh
    make up
    ```
@@ -124,6 +129,14 @@ Rendez-vous à l'adresse <a href="http://localhost:3000/">http://localhost:3000/
 1. Base de données : <a href="http://localhost:8086/">http://localhost:8086/</a>
 
 2. API : <a href="http://localhost:8000/">http://localhost:8000/</a>
+
+## Injecter des données à la main dans la BDD
+
+Exécuter la commande suivante dans le conteneur `db` (après avoir monté le fichier `file.csv` dans le `docker-compose`) :
+
+```sh
+influx write --bucket my-bucket --format=csv --file /home/influxdb/file.csv
+```
 
 ## Roadmap
 
