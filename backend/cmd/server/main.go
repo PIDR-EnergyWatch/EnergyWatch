@@ -4,10 +4,11 @@ import (
 	"backend/api/api"
 	"backend/api/auth"
 	"backend/internal"
-	"github.com/go-playground/validator/v10"
 	"net/http"
 	"os"
 	"strings"
+
+	"github.com/go-playground/validator/v10"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -35,13 +36,28 @@ func main() {
 		origins = append(origins, strings.TrimSpace(origin))
 	}
 
+	// Middleware
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
 		AllowOrigins:     origins,
 		AllowCredentials: true,
 	}))
-
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
+	e.Use(middleware.StaticWithConfig(middleware.StaticConfig{
+		Skipper: nil,
+		// Root directory from where the static content is served.
+		Root: "build",
+		// Index file for serving a directory.
+		// Optional. Default value "index.html".
+		Index: "login.html",
+		// Enable HTML5 mode by forwarding all not-found requests to root so that
+		// SPA (single-page application) can handle the routing.
+		HTML5:      true,
+		Browse:     false,
+		IgnoreBase: false,
+		Filesystem: nil,
+	}))
+
 	e.Validator = &CustomValidator{validator: validator.New()}
 
 	// connect to the database
