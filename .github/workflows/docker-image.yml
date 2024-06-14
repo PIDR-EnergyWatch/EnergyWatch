@@ -7,20 +7,10 @@ on:
     branches: ["main"]
 
 jobs:
-  build:
+  deploy:
     runs-on: self-hosted
 
     steps:
       - uses: actions/checkout@v4
       - name: Build the Docker image
-        run: echo "${{ secrets.ENV_FILE }}" > .env && make down-prod && make build-prod && make up-prod
-
-  deploy:
-    runs-on: self-hosted
-
-    needs: build
-
-    steps:
-      - uses: actions/checkout@v4
-      - name: Run the Docker image
-        run: echo "${{ secrets.DOCKER_PASSWORD }}" && docker exec energywatch-mqtt-1 mosquitto_passwd -D /mosquitto/config/pwfile ensem $MQTT_USER && docker exec energywatch-mqtt-1 mosquitto_passwd -b /mosquitto/config/pwfile $MQTT_USER $MQTT_PASSWORD && make down-prod && make up-prod
+        run: echo "${{ secrets.ENV_FILE }}" > .env && make down-prod && make build-prod && make up-prod && docker exec energywatch-mqtt-1 mosquitto_passwd -D /mosquitto/config/pwfile ensem $MQTT_USER && docker exec energywatch-mqtt-1 mosquitto_passwd -b /mosquitto/config/pwfile $MQTT_USER $MQTT_PASSWORD && make down-prod && make up-prod
