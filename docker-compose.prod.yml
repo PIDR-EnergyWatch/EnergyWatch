@@ -25,8 +25,6 @@ services:
       - influxdbv2_config:/etc/influxdb2
       - ./db/pat.csv:/home/influxdb/pat.csv
       - ./db/EAT.csv:/home/influxdb/EAT.csv
-    command:
-      - bash -c "influx write --bucket my-bucket --format=csv --file /home/influxdb/pat.csv && influx write --bucket my-bucket --format=csv --file /home/influxdb/EAT.csv"
 
   telegraf:
     image: telegraf:1.19
