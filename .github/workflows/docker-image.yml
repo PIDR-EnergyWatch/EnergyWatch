@@ -13,4 +13,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build the Docker image
-        run: echo "${{ secrets.ENV_FILE }}" > .env && make build-prod && make up-prod
+        run: echo "${{ secrets.ENV_FILE }}" > .env && make down-prod && make build-prod && make up-prod
