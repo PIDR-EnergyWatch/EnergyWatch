@@ -1,4 +1,4 @@
-version: "3"
+version: "3.7"
 
 services:
   backend:
@@ -46,6 +46,7 @@ services:
       - ./docker/mosquitto/pwfile:/mosquitto/config/pwfile
       - mqtt_data:/mosquitto/data:rw
       - mqtt_log:/mosquitto/log:rw
+    command: sh -c "echo ${MQTT_USER}:${MQTT_PASSWORD} > /mosquitto/config/pwfile && chmod 0700 /mosquitto/config/pwfile && chown mosquitto /mosquitto/config/pwfile && mosquitto_passwd -U /mosquitto/config/pwfile && mosquitto -c /mosquitto/config/mosquitto.conf"
     restart: unless-stopped
 
 volumes:
