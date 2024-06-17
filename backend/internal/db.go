@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/influxdata/influxdb-client-go/v2"
+	influxdb2 "github.com/influxdata/influxdb-client-go/v2"
 )
 
 func ConnectDB() {
@@ -32,7 +32,7 @@ func QueryDB(measurement string) interface{} {
 	// Get query client
 	queryAPI := client.QueryAPI("my-org")
 	// get QueryTableResult
-	result, err := queryAPI.Query(context.Background(), `from(bucket:"my-bucket")|> range(start: -1y) |> filter(fn: (r) => r._measurement == "`+measurement+`")`)
+	result, err := queryAPI.Query(context.Background(), `from(bucket:"my-bucket")|> range(start: -1y) |> filter(fn: (r) => r._measurement == "`+measurement+`") |> sort(columns: ["_time"])`)
 	if err == nil {
 		// Init response
 		res.Labels = make([]time.Time, 0)
