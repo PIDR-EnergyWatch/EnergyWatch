@@ -32,6 +32,19 @@ export const logout = async() => {
 export const requestData = async(measurement) => {
     try {
         const response = await api.get(`/api/request?measurement=${measurement}`);
+
+        let tempArray = temp.labels.map((label, index) => {
+            return {date: label, value: temp.values[index]};
+        });
+        tempArray.sort((a, b) => {
+            let dateA = new Date(a.date), dateB = new Date(b.date);
+            return dateA - dateB;
+        });
+        let sortedLabels = tempArray.map(item => item.date);
+        let sortedValues = tempArray.map(item => item.value);
+        temp.labels = sortedLabels;
+        temp.values = sortedValues;
+        
         return response;
     } catch (err) {
         return err.response?.data?.message;
